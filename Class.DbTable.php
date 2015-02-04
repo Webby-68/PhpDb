@@ -10,6 +10,7 @@ class DBTable
 {
 var $dbTable='';
 var $tabChamps=array();
+var $debug=false;
 
 function DBTable($Table='',$Base='')
 	{
@@ -19,10 +20,10 @@ function DBTable($Table='',$Base='')
 	if ($this->dbBase!='')	$this->Table='`'.$this->dbBase.'`.'.$this->Table;
 	}
 
-function create()
+function create($debug=false)
 	{
 	global $objSQL;
-	//echo '[Object] DBTable("'.$this->dbTable.'")->load('.$Num.')<br />';
+	if ($this->debug || $debug) echo '[Object] DBTable("'.$this->dbTable.'")->load('.$Num.')<br />';
 
 	$this->tabChamps=array();
 	$this->Num=0;
@@ -35,11 +36,11 @@ function create()
 	return $this->Num;
 	}
 
-function load($Num=0)
+function load($Num=0,$debug=false)
 	{
 	global $objSQL;
 	$Num=intval($Num);
-	//echo '[Object] DBTable("'.$this->dbTable.'")->load('.$Num.')<br />';
+	if ($this->debug || $debug) echo '[Object] DBTable("'.$this->dbTable.'")->load('.$Num.')<br />';
 
 	$this->tabChamps=array();
 	$this->Num=0;
@@ -62,7 +63,7 @@ function load($Num=0)
 function save($debug=false)
 	{
 	global $objSQL;
-	//if ($this->debug || $debug) echo '[Object] DBTable("'.$this->dbTable.'")->save('.$this->Num.')<br />';
+	if ($this->debug || $debug) echo '[Object] DBTable("'.$this->dbTable.'")->save('.$this->Num.')<br />';
 
 	if ($this->Num>0 && $this->dbTable!='')
 		{
@@ -86,16 +87,16 @@ function json()
 		foreach ($this->tabChamps as $c)
 			{
 			if ($s!='')	$s.=',';
-			$s.='"'.$c.'":"'.$this->$c.'"';
+			$s.='"'.json_encode($c).'":"'.json_encode($this->$c).'"';
 			}
 		}
 	return '{'.$s.'}';
 	}
 
-function delete()
+function delete($debug=false)
 	{
 	global $objSQL;
-	//echo '[Object] DBTable('.$this->Num.')->delete()<br />';
+	if ($this->debug || $debug) echo '[Object] DBTable('.$this->Num.')->delete()<br />';
 
 	if ($this->Num>0 && $this->dbTable!='')
 		{
