@@ -4,7 +4,7 @@
 
 class SQL
 	{
-  var $DBConnexion=NULL;
+  	var $DBConnexion=NULL;
 	var $BaseServer='localhost';
 	var $Connected=false;
 	var $Charset='utf-8';
@@ -136,7 +136,7 @@ class SQL
 
 		// Execution de la requete
 		$mt=getmicrotime();
-		$resultat=@mysql_query($Requete, $this->DBConnexion);
+		$resultat=@mysql_query($Requete,$this->DBConnexion);
 		$mt=getmicrotime()-$mt;
 		if ($this->logRequetes)	$this->tabRequetes[]='['.number_format($mt*1000,1,',',' ').'ms] '.$Requete;
 		$this->ExecTime+=$mt;
