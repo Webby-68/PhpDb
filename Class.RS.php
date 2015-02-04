@@ -28,13 +28,13 @@ include_once('Class.SQL.php');
 
 // Fonctionne aussi (et surtout) dans le cadre d'un héritage de classe //
 
-class DBTable
+class RS
 {
 var $dbTable='';
 var $tabChamps=array();
 var $debug=false;
 
-function DBTable($Table='',$Base='')
+function RS($Table='',$Base='')
 	{
 	if ($Table!='')	$this->dbTable=$Table;
 	$this->dbBase=$Base;
