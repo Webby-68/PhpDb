@@ -2,9 +2,31 @@
 // ********** Code by Nicolas Randé : nicolas.rande@gmail.com ********** //
 // https://github.com/Webby-68/PhpDb/
 
+$cache=array(); // Gestion d'un cache (sera fait plus tard)
+
 include_once('Class.SQL.php');
 
-$cache=array(); // Gestion d'un cache (sera fait plus tard)
+// Exemples d'utilisation :
+// $objSQL=new SQL('myDbName','mydbLogin','myDbPass','myServeurIP');
+// $objRS=new DBTable('Utilisateur');
+// $objRS->load(75);	// cherche l'enregistrement correspondant à Utilisateur.NumUtilisateur=75
+// var_dump($objRS);	// affiche les valeurs de ce recordset récupérées dans l'objet
+// echo $objRS->Nom;	// Affichage de la valeur d'un champs du recordset
+// $objRS->Nom='Toto';	// modification de la valeur dans l'objet
+// $objRS->Prenom='Titi';
+// $objRS->save();	// sauvegarde dans la base (sorte de commit quoi)
+
+// $objRS=new DBTable('Utilisateur');
+// $new=$objRS->create(); // crée un nouvel enregistrement (et accessoirement retourne l'ID auto)
+// $objRS->Nom='Toto';
+// $objRS->Prenom='Tata';
+// $objRS->save();	// sauve les infos en base
+
+// $objRS=new DBTable('Utilisateur');
+// $objRS->load(74);	// cherche l'enregistrement correspondant à Utilisateur.NumUtilisateur=74
+// $objRS->delete();	// Supprime le recordset
+
+// Fonctionne aussi (et surtout) dans le cadre d'un héritage de classe //
 
 class DBTable
 {
